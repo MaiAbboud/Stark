@@ -1,0 +1,12 @@
+*.idea
+*~
+*__pycache__*
+*.pyc
+.vscode
+checkpoints
+data
+stark-env
+__pycache__/
+*local.py
+videos/
+test/
