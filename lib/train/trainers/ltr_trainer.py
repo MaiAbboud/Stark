@@ -53,7 +53,7 @@ class LTRTrainer(BaseTrainer):
 
     def cycle_dataset(self, loader):
         """Do a cycle of training or validation."""
-
+        start_train_time = time.time()
         self.actor.train(loader.training)
         torch.set_grad_enabled(loader.training)
 
@@ -92,6 +92,9 @@ class LTRTrainer(BaseTrainer):
 
             # print statistics
             self._print_stats(i, loader, batch_size)
+            if i % self.settings.print_interval == 0 or i == loader.__len__():
+                print(f'time is {(time.time()-start_train_time)}')
+                start_train_time = time.time()
 
     def train_epoch(self):
         """Do one epoch for each loader."""
